@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#05070d">
+  <meta
+    name="description"
+    content="현실의 복잡한 문제를 시스템과 workflow로 바꾸며 점진적으로 성장하는 개발자 이준규의 Cosmic Career Timeline 포트폴리오"
+  >
+  <title>이준규 | Cosmic Career Timeline</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="space-bg" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#hero" aria-label="이준규 포트폴리오 홈">이준규</a>
+    <nav class="top-nav" aria-label="Primary navigation">
+      <a href="#about">About Me</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#work">Selected Work</a>
+      <a href="#philosophy">Philosophy</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main class="site-main">
+    <section id="hero" class="hero career-universe" aria-labelledby="hero-title">
+      <div class="hero-identity">
+        <div class="hero-copy">
+          <p class="eyebrow">Cosmic Career Timeline</p>
+          <h1 id="hero-title" data-profile="name">이준규</h1>
+          <p class="hero-headline" data-profile="headline">현실의 복잡한 문제를 시스템과 workflow로 바꾸는 개발자</p>
+          <p class="hero-summary" data-profile="summary">
+            물류와 제조 현장에서 시작해 운영 안정화, 데이터 흐름, AI Agent workflow까지 탐구하며 점진적으로 성장하고 있습니다.
+          </p>
+          <div class="hero-links" data-profile="links" aria-label="Profile links">
+            <a href="https://junq2021.tistory.com/" target="_blank" rel="noreferrer">Blog</a>
+            <a href="https://github.com/JQ-WCoding" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+
+        <figure class="profile-orbit" aria-label="Profile portrait">
+          <div class="profile-frame">
+            <img
+              src="./assets/profile.svg"
+              alt="이준규 프로필 사진"
+              loading="eager"
+              onerror="this.hidden=true; this.parentElement.parentElement.classList.add('is-placeholder');"
+            >
+            <div class="profile-placeholder" aria-hidden="true">
+              <span>이</span>
+              <span>준</span>
+              <span>규</span>
+            </div>
+          </div>
+        </figure>
+      </div>
+
+      <div id="timeline" class="career-map" data-career-map aria-labelledby="timeline-title">
+        <h2 id="timeline-title" class="visually-hidden">Life & Career Timeline</h2>
+
+        <div class="timeline-toolbar">
+          <div class="timeline-filters" data-timeline-filters aria-label="Timeline filters"></div>
+        </div>
+
+        <div class="timeline-shell">
+          <div class="timeline-stage" data-timeline-stage aria-live="polite">
+            <div class="timeline-empty-state">
+              타임라인 데이터가 여기에 표시됩니다.
+            </div>
+          </div>
+
+          <aside class="detail-panel" data-detail-panel hidden aria-live="polite" aria-atomic="true"></aside>
+        </div>
+      </div>
+
+      <a class="hero-scroll" href="#about">Scroll to explore more</a>
+    </section>
+
+    <section id="about" class="content-section about-section" aria-labelledby="about-title">
+      <div class="section-heading">
+        <p class="eyebrow">About Me</p>
+        <h2 id="about-title">복잡한 현실을 구조화하는 개발자</h2>
+      </div>
+      <div class="content-flow">
+        <p>
+          처음부터 AI/AX를 향해 곧장 달려온 것은 아닙니다. 물류와 제조 현장에서 입고, 출고, 재고,
+          생산, 검사 같은 현실의 복잡한 흐름을 시스템으로 구현하며 커리어를 시작했습니다.
+        </p>
+        <p>
+          그 과정에서 개발은 기능을 만드는 일만이 아니라, 업무의 흐름을 이해하고 데이터 구조로 정리하고
+          운영 가능한 기준을 남기는 일이라는 관점을 갖게 됐습니다.
+        </p>
+        <p>
+          이제는 그 경험을 바탕으로 AI Agent, MCP, SSE, 문서 기반 workflow를 연결하며 변화하는 개발 환경
+          속에서 다음 문제를 풀어가고 있습니다.
+        </p>
+      </div>
+    </section>
+
+    <section id="work" class="content-section work-section" aria-labelledby="work-title">
+      <div class="section-heading">
+        <p class="eyebrow">Selected Work</p>
+        <h2 id="work-title">문제가 시스템이 된 순간들</h2>
+        <p class="section-lead">
+          각 프로젝트는 기술 스택보다 문제를 어떻게 바라봤고 어떤 구조로 바꿨는지를 중심으로 정리했습니다.
+        </p>
+      </div>
+      <div class="work-grid" data-selected-work></div>
+    </section>
+
+    <section id="philosophy" class="content-section philosophy-section" aria-labelledby="philosophy-title">
+      <div class="section-heading">
+        <p class="eyebrow">Developer Philosophy</p>
+        <h2 id="philosophy-title">제가 문제를 바라보는 방식</h2>
+      </div>
+      <div class="philosophy-grid" data-philosophy></div>
+    </section>
+
+    <section id="tech-stack" class="content-section tech-stack-section" aria-labelledby="tech-stack-title">
+      <div class="section-heading">
+        <p class="eyebrow">Tech Stack</p>
+        <h2 id="tech-stack-title">기술은 문제를 설명하는 도구입니다</h2>
+      </div>
+      <div class="tech-stack-grid" data-tech-stack></div>
+    </section>
+
+    <section id="contact" class="content-section closing-section" aria-labelledby="closing-title">
+      <div class="section-heading">
+        <p class="eyebrow">Closing</p>
+        <h2 id="closing-title">계속 탐구하며 점진적으로 성장합니다</h2>
+      </div>
+      <p class="closing-copy" data-closing-copy>
+        변화하는 세상을 계속 탐구하고, 경험을 구조화하며, 다음 문제를 풀 수 있는 개발자로 점진적으로 성장하고 있습니다.
+      </p>
+    </section>
+  </main>
+
+  <script src="./scripts/data.js"></script>
+  <script src="./scripts/main.js"></script>
+</body>
+</html>
