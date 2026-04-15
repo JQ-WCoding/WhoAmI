@@ -22,6 +22,10 @@ assertFile("assets/space-background.png");
 const html = read("index.html");
 [
   "career-universe",
+  "data-scroll-progress",
+  "data-scroll-scene",
+  "scene-visual",
+  "scroll-scene",
   "data-career-map",
   "data-profile=\"headline\"",
   "data-profile=\"summary\"",
@@ -53,6 +57,9 @@ assert.ok(
   "styles.css should use the saved galaxy background asset"
 );
 assert.ok(css.includes(".career-universe"), "styles.css should style the first-screen career universe");
+assert.ok(css.includes(".scroll-progress"), "styles.css should style the scroll progress indicator");
+assert.ok(css.includes(".scroll-scene.is-active"), "styles.css should style the active scroll scene");
+assert.ok(css.includes("@media (prefers-reduced-motion: reduce)"), "styles.css should respect reduced motion");
 
 const sandbox = { window: {} };
 vm.createContext(sandbox);
@@ -109,7 +116,15 @@ assert.ok(
 assert.ok(data.techStacks.every((group) => group.label && group.items.length > 0), "tech stack groups should have labels and items");
 
 const main = read("scripts/main.js");
-["renderTimeline", "openDetail", "closeDetail", "renderTechStack"].forEach((name) => {
+[
+  "renderTimeline",
+  "openDetail",
+  "closeDetail",
+  "renderTechStack",
+  "initScrollScenes",
+  "updateScrollScenes",
+  "setActiveScrollScene"
+].forEach((name) => {
   assert.ok(main.includes(name), `main.js should include ${name}`);
 });
 assert.ok(main.includes("group.name || group.label"), "main.js should render tech stack labels from data");

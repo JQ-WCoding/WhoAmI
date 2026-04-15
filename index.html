@@ -13,6 +13,7 @@
 </head>
 <body>
   <div class="space-bg" aria-hidden="true"></div>
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
 
   <header class="site-header">
     <a class="brand" href="#hero" aria-label="이준규 포트폴리오 홈">이준규</a>
@@ -26,7 +27,7 @@
   </header>
 
   <main class="site-main">
-    <section id="hero" class="hero career-universe" aria-labelledby="hero-title">
+    <section id="hero" class="hero career-universe scroll-scene" data-scroll-scene="hero" aria-labelledby="hero-title">
       <div class="hero-identity">
         <div class="hero-copy">
           <p class="eyebrow">Cosmic Career Timeline</p>
@@ -79,10 +80,16 @@
       <a class="hero-scroll" href="#about">Scroll to explore more</a>
     </section>
 
-    <section id="about" class="content-section about-section" aria-labelledby="about-title">
+    <section id="about" class="content-section about-section scroll-scene" data-scroll-scene="about" aria-labelledby="about-title">
       <div class="section-heading">
         <p class="eyebrow">About Me</p>
         <h2 id="about-title">복잡한 현실을 구조화하는 개발자</h2>
+      </div>
+      <div class="scene-visual scene-visual--about" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
       <div class="content-flow">
         <p>
@@ -100,7 +107,7 @@
       </div>
     </section>
 
-    <section id="work" class="content-section work-section" aria-labelledby="work-title">
+    <section id="work" class="content-section work-section scroll-scene" data-scroll-scene="work" aria-labelledby="work-title">
       <div class="section-heading">
         <p class="eyebrow">Selected Work</p>
         <h2 id="work-title">문제가 시스템이 된 순간들</h2>
@@ -108,26 +115,46 @@
           각 프로젝트는 기술 스택보다 문제를 어떻게 바라봤고 어떤 구조로 바꿨는지를 중심으로 정리했습니다.
         </p>
       </div>
+      <div class="scene-visual scene-visual--work" aria-hidden="true">
+        <span>API</span>
+        <span>DB</span>
+        <span>MCP</span>
+        <span>SSE</span>
+        <span>OPS</span>
+      </div>
       <div class="work-grid" data-selected-work></div>
     </section>
 
-    <section id="philosophy" class="content-section philosophy-section" aria-labelledby="philosophy-title">
+    <section id="philosophy" class="content-section philosophy-section scroll-scene" data-scroll-scene="philosophy" aria-labelledby="philosophy-title">
       <div class="section-heading">
         <p class="eyebrow">Developer Philosophy</p>
         <h2 id="philosophy-title">제가 문제를 바라보는 방식</h2>
       </div>
+      <div class="scene-visual scene-visual--philosophy" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
       <div class="philosophy-grid" data-philosophy></div>
     </section>
 
-    <section id="tech-stack" class="content-section tech-stack-section" aria-labelledby="tech-stack-title">
+    <section id="tech-stack" class="content-section tech-stack-section scroll-scene" data-scroll-scene="tech-stack" aria-labelledby="tech-stack-title">
       <div class="section-heading">
         <p class="eyebrow">Tech Stack</p>
         <h2 id="tech-stack-title">기술은 문제를 설명하는 도구입니다</h2>
       </div>
+      <div class="scene-visual scene-visual--tech" aria-hidden="true">
+        <span>Java</span>
+        <span>React</span>
+        <span>FastAPI</span>
+        <span>LangGraph</span>
+        <span>Oracle</span>
+        <span>Git</span>
+      </div>
       <div class="tech-stack-grid" data-tech-stack></div>
     </section>
 
-    <section id="contact" class="content-section closing-section" aria-labelledby="closing-title">
+    <section id="contact" class="content-section closing-section scroll-scene" data-scroll-scene="contact" aria-labelledby="closing-title">
       <div class="section-heading">
         <p class="eyebrow">Closing</p>
         <h2 id="closing-title">계속 탐구하며 점진적으로 성장합니다</h2>
@@ -135,6 +162,11 @@
       <p class="closing-copy" data-closing-copy>
         변화하는 세상을 계속 탐구하고, 경험을 구조화하며, 다음 문제를 풀 수 있는 개발자로 점진적으로 성장하고 있습니다.
       </p>
+      <div class="scene-visual scene-visual--contact" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
     </section>
   </main>
 

@@ -1,7 +1,11 @@
 (function () {
   const state = {
     activeFilter: "all",
-    activeEventId: null
+    activeEventId: null,
+    activeScene: null,
+    scrollScenes: [],
+    scrollFrame: null,
+    scrollObserver: null
   };
 
   function getData() {
@@ -282,6 +286,98 @@
     root.textContent = data.closing || "";
   }
 
+  function clamp(value, min, max) {
+    return Math.min(max, Math.max(min, value));
+  }
+
+  function setActiveScrollScene(scene) {
+    if (!scene || scene === state.activeScene) return;
+
+    state.activeScene = scene;
+    const activeIndex = state.scrollScenes.indexOf(scene);
+    const sceneName = scene.dataset.scrollScene || "";
+
+    document.body.dataset.activeScene = sceneName;
+
+    state.scrollScenes.forEach((item, index) => {
+      const isActive = item === scene;
+      item.classList.toggle("is-active", isActive);
+      item.classList.toggle("is-before", !isActive && index < activeIndex);
+      item.classList.toggle("is-after", !isActive && index > activeIndex);
+    });
+  }
+
+  function updateScrollScenes() {
+    state.scrollFrame = null;
+
+    const maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    const pageProgress = clamp(window.scrollY / maxScroll, 0, 1);
+    document.documentElement.style.setProperty("--page-scroll", pageProgress.toFixed(4));
+
+    if (state.scrollScenes.length === 0) return;
+
+    const viewportCenter = window.innerHeight / 2;
+    let nearest = state.scrollScenes[0];
+    let nearestDistance = Number.POSITIVE_INFINITY;
+
+    state.scrollScenes.forEach((scene) => {
+      const rect = scene.getBoundingClientRect();
+      const progress = clamp((window.innerHeight - rect.top) / (window.innerHeight + rect.height), 0, 1);
+      const distance = Math.abs(rect.top + rect.height / 2 - viewportCenter);
+
+      scene.style.setProperty("--scene-progress", progress.toFixed(3));
+
+      if (distance < nearestDistance) {
+        nearest = scene;
+        nearestDistance = distance;
+      }
+    });
+
+    setActiveScrollScene(nearest);
+  }
+
+  function requestScrollSceneUpdate() {
+    if (state.scrollFrame !== null) return;
+
+    if (typeof window.requestAnimationFrame === "function") {
+      state.scrollFrame = window.requestAnimationFrame(updateScrollScenes);
+      return;
+    }
+
+    updateScrollScenes();
+  }
+
+  function initScrollScenes() {
+    state.scrollScenes = Array.from(document.querySelectorAll("[data-scroll-scene]"));
+    if (state.scrollScenes.length === 0) return;
+
+    state.scrollScenes.forEach((scene) => {
+      scene.classList.add("scroll-scene");
+      scene.classList.add("is-after");
+    });
+
+    if ("IntersectionObserver" in window) {
+      state.scrollObserver = new IntersectionObserver(
+        (entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) {
+            requestScrollSceneUpdate();
+          }
+        },
+        {
+          root: null,
+          rootMargin: "-30% 0px -34% 0px",
+          threshold: [0, 0.25, 0.5, 0.75, 1]
+        }
+      );
+
+      state.scrollScenes.forEach((scene) => state.scrollObserver.observe(scene));
+    }
+
+    window.addEventListener("scroll", requestScrollSceneUpdate, { passive: true });
+    window.addEventListener("resize", requestScrollSceneUpdate);
+    updateScrollScenes();
+  }
+
   function bindFilters() {
     const root = document.querySelector("[data-timeline-filters]");
     if (!root) return;
@@ -324,6 +420,7 @@
     renderPhilosophy();
     renderTechStack();
     renderClosing();
+    initScrollScenes();
     bindFilters();
     bindGlobalKeys();
     bindOutsideDetailClicks();
@@ -339,6 +436,9 @@
     renderTimeline,
     openDetail,
     closeDetail,
-    renderTechStack
+    renderTechStack,
+    initScrollScenes,
+    updateScrollScenes,
+    setActiveScrollScene
   };
 })();
